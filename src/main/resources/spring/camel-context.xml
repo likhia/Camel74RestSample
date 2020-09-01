@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring.xsd">
-    
+    <bean class="org.mycompany.bean.RestProcessor" id="processor"/>
+   
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-    
-	    <restConfiguration bindingMode="json" component="spark-rest" port="9091"/>
-	    
-	    <rest>
-	        <get uri="/rest2">
-	            <route>
-	                <transform>
-	                    <constant>rest2</constant>
-	                </transform>
-	            </route>
-	        </get>
-	    </rest>
-	</camelContext>
+        <restConfiguration bindingMode="json" component="spark-rest" port="9091"/>
+
+		<rest path="/rest1">
+            <post consumes="application/json"
+                outType="org.mycompany.bean.OutputBean"
+                produces="application/json"
+                type="org.mycompany.bean.InputBean" uri="process">
+                <route>
+                    <process ref="processor"/>
+                </route>
+            </post>
+        </rest>
+        
+        <rest id="rest-4649d52a-27bf-40f3-8f82-5192bcc50434">
+            <get id="get-96ebb33e-4c3a-496f-a093-bf49204cf843" uri="/rest2">
+                <route>
+                    <transform>
+                        <constant>testing ok</constant>
+                    </transform>
+                </route>
+            </get>
+        </rest>
+    </camelContext>
 </beans>

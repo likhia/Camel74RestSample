@@ -1,1 +1,4 @@
+org/mycompany/bean/OutputBean.class
+org/mycompany/bean/InputBean.class
+org/mycompany/bean/RestProcessor.class
 org/mycompany/Application.class
