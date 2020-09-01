@@ -2,12 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring.xsd">
     <bean class="org.mycompany.bean.RestProcessor" id="processor"/>
-   
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration bindingMode="json" component="spark-rest" port="9091"/>
-
-		<rest path="/rest1">
+        <rest id="rest-6bee6017-8e24-423a-a9e4-12efd0ec2470" path="/rest1">
             <post consumes="application/json"
+                id="post-ee809aba-278f-4916-a0b4-92995f70741b"
                 outType="org.mycompany.bean.OutputBean"
                 produces="application/json"
                 type="org.mycompany.bean.InputBean" uri="process">
@@ -16,7 +15,6 @@
                 </route>
             </post>
         </rest>
-        
         <rest id="rest-4649d52a-27bf-40f3-8f82-5192bcc50434">
             <get id="get-96ebb33e-4c3a-496f-a093-bf49204cf843" uri="/rest2">
                 <route>
