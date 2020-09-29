@@ -22,7 +22,7 @@ public class RestProcessor implements Processor {
         //Get input from exchange
     	InputBean inputParam = (InputBean) exchange.getIn().getBody(InputBean.class);
         
-        out.setResult(header + " " + inputParam.getField1() + " " + inputParam.getField2() + " v3");
+        out.setResult(header + " " + inputParam.getField1() + " " + inputParam.getField2() + " v2");
         //set output in exchange
         exchange.getOut().setBody(out);
     }
